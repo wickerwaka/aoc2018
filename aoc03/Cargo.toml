@@ -1,0 +1,7 @@
+[package]
+name = "aoc03"
+version = "0.1.0"
+authors = ["Donlon, Martin <mdonlon@treyarch.com>"]
+
+[dependencies]
+regex = "1"
