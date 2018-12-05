@@ -1,7 +1,5 @@
 use std::collections::HashMap;
-use std::error::Error;
 use std::io::{self, Read};
-use std::result;
 
 extern crate regex;
 use regex::Regex;
@@ -73,9 +71,10 @@ fn main() -> io::Result<()> {
 }
 
 fn part1(series: Vec<Event>) {
-    let mut guard_sl = Hash
+    let mut sleep_duration: HashMap<i32, [i32; 60]> = HashMap::new();
     let mut guard_id = 0;
-    let mut asleep_minute: Option<u32>;
+    let mut asleep_minute: Option<u32> = None;
+
     for event in series.iter() {
         match event {
             Event {
@@ -86,15 +85,41 @@ fn part1(series: Vec<Event>) {
                 asleep_minute = None;
             }
             Event {
-                dt: dt,
-                event: FallAsleep,
+                dt,
+                event: EventInfo::FallAsleep,
             } => asleep_minute = Some(dt.minute()),
             Event {
-                dt: dt,
-                event: WakeUp
+                dt,
+                event: EventInfo::WakeUp,
             } => {
-
+                let mut durations = sleep_duration.entry(guard_id).or_insert([0; 60]);
+                for x in asleep_minute.unwrap()..dt.minute() {
+                    durations[x as usize] += 1;
+                }
+                asleep_minute = None;
             }
-
+        }
     }
+
+    if let Some((id, durations)) = sleep_duration
+        .iter()
+        .max_by_key(|&x| x.1.iter().sum::<i32>())
+    {
+        let (idx, _) = durations.iter().enumerate().max_by_key(|x| x.1).unwrap();
+        println!("{}", *id * idx as i32);
+    }
+
+    let mut max_duration = 0;
+    let mut max_idx = 0;
+    let mut max_guard = 0;
+    for (&id, durations) in &sleep_duration {
+        for (idx, &duration) in durations.iter().enumerate() {
+            if duration > max_duration {
+                max_idx = idx;
+                max_guard = id;
+                max_duration = duration;
+            }
+        }
+    }
+    println!("{}", max_guard * max_idx as i32);
 }
