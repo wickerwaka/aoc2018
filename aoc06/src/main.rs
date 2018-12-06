@@ -24,6 +24,33 @@ impl FromStr for Point {
     }
 }
 
+impl Point {
+    fn distance(&self, other: &Point) -> i32 {
+        (self.x - other.x).abs() + (self.y - other.y).abs()
+    }
+
+    fn nearest(&self, points: &[Point]) -> Option<usize> {
+        let mut distances: Vec<(usize, i32)> = points
+            .iter()
+            .map(|x| self.distance(&x))
+            .enumerate()
+            .collect();
+        distances.sort_by_key(|x| x.1);
+
+        if distances.len() == 0 {
+            None
+        } else if distances.len() == 1 {
+            Some(distances[0].0)
+        } else {
+            if distances[0].1 == distances[1].1 {
+                None
+            } else {
+                Some(distances[0].0)
+            }
+        }
+    }
+}
+
 fn main() -> io::Result<()> {
     let mut s = String::new();
     io::stdin().read_to_string(&mut s)?;
