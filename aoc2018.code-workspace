@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "aoc06"
+		},
+		{
+			"path": "aoc07"
 		}
 	],
 	"settings": {}
