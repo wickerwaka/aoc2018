@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
+use std::fs;
 use std::io::{self, Read};
 use std::str;
 
@@ -44,8 +45,7 @@ fn complete_step(pending: &mut PendingSteps, step: u8) {
 }
 
 fn main() -> io::Result<()> {
-    let mut s = String::new();
-    io::stdin().read_to_string(&mut s)?;
+    let s = fs::read_to_string("input/input.txt")?;
 
     let re = Regex::new(r".*Step (\S) must.*(\S) can begin.*").unwrap();
 
