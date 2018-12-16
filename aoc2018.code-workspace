@@ -23,6 +23,12 @@
 		},
 		{
 			"path": "aoc08"
+		},
+		{
+			"path": "aoc09"
+		},
+		{
+			"path": "aoc10"
 		}
 	],
 	"settings": {}
