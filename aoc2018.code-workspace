@@ -35,6 +35,9 @@
 		},
 		{
 			"path": "aoc12"
+		},
+		{
+			"path": "aoc13"
 		}
 	],
 	"settings": {}

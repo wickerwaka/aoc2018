@@ -75,6 +75,7 @@ fn main() {
         .max_by_key(|quad| quad.power)
         .unwrap();
     let part2 = results.iter().max_by_key(|quad| quad.power).unwrap();
+
     println!("Part1: {:?}", part1);
     println!("Part2: {:?}", part2);
 }
