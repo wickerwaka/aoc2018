@@ -38,6 +38,9 @@
 		},
 		{
 			"path": "aoc13"
+		},
+		{
+			"path": "aoc14"
 		}
 	],
 	"settings": {}

@@ -1,9 +1,6 @@
-use std::collections::HashMap;
-
 struct Grid {
     cells: Vec<i64>,
     width: usize,
-    height: usize,
 }
 
 impl Grid {
@@ -17,11 +14,7 @@ impl Grid {
                 cells.push(power);
             }
         }
-        Grid {
-            cells,
-            width,
-            height,
-        }
+        Grid { cells, width }
     }
 
     fn cell_power(&self, x: usize, y: usize) -> Option<i64> {

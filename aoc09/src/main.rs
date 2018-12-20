@@ -1,4 +1,3 @@
-use std::fs;
 use std::io;
 
 fn wrap_index(idx: usize, diff: i64, len: usize) -> usize {
@@ -6,8 +5,8 @@ fn wrap_index(idx: usize, diff: i64, len: usize) -> usize {
 }
 
 fn main() -> io::Result<()> {
-    let NUM_PLAYERS = 468;
-    let LAST_VALUE = 7101000;
+    const NUM_PLAYERS: usize = 468;
+    const LAST_VALUE: i64 = 7101000;
 
     let mut circle = vec![0];
     let mut current_position: usize = 0;
@@ -15,7 +14,7 @@ fn main() -> io::Result<()> {
     let mut player_scores: Vec<i64> = vec![0; NUM_PLAYERS];
 
     loop {
-        for (player, score) in player_scores.iter_mut().enumerate() {
+        for (_, score) in player_scores.iter_mut().enumerate() {
             if next_value % 23 == 0 {
                 *score += next_value;
                 current_position = wrap_index(current_position, -7, circle.len());
