@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs;
-use std::io::{self, Read};
+use std::io;
 use std::str;
 
 extern crate regex;
